@@ -33,29 +33,14 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		// Duplication
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		this.uiManager.clearRentals(customerName);
+
 
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
-
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
-		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
 		String videoTitle = scanner.next() ;
@@ -82,32 +67,17 @@ public class VRUI {
 	public void getCustomerReport() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
+		this.uiManager.getCustomerReport(customerName);
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
 	}
 
 	public void rentVideo() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
-
-		if ( foundCustomer == null ) return ;
-
 		System.out.println("Enter video title to rent: ") ;
 		String videoTitle = scanner.next() ;
+
 		this.uiManager.rentVideo(customerName, videoTitle);
 	}
 
@@ -123,10 +93,10 @@ public class VRUI {
 		String title = scanner.next() ;
 
 		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
-		VideoType videoType = VideoType.fromInt(scanner.nextInt());
+		int videoType = scanner.nextInt();
 
 		System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
-		PriceCode priceCode = PriceCode.fromInt(scanner.nextInt());
+		int priceCode = scanner.nextInt();
 
 		this.uiManager.registerVideo(title, videoType, priceCode);
 	}

@@ -36,8 +36,9 @@ class CustomerTest {
         Customer customer = new Customer("AA");
         List<Rental> testRentals = new ArrayList<Rental>();
 
-        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date());
-        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date());
+        VideoSystem videoSystem = new VideoSystem();
+        Video v1 = videoSystem.createVideo("v1", 1, 0);
+        Video v2 = videoSystem.createVideo("v2", 2, 1);
         Rental r1 = new Rental(v1);
         Rental r2 = new Rental(v2);
         testRentals.add(r1);
@@ -51,8 +52,9 @@ class CustomerTest {
     void addgetRental() {
         Customer customer = new Customer("AA");
 
-        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date());
-        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date());
+        VideoSystem videoSystem = new VideoSystem();
+        Video v1 = videoSystem.createVideo("v1", 1, 0);
+        Video v2 = videoSystem.createVideo("v2", 2, 1);
         Rental r1 = new Rental(v1);
         Rental r2 = new Rental(v2);
         customer.addRental(r1);

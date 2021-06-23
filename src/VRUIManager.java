@@ -7,42 +7,37 @@ public class VRUIManager {
 
     private List<Customer> customers = new ArrayList<Customer>() ;
     private List<Video> videos = new ArrayList<Video>() ;
+    private VideoSystem videoSystem = new VideoSystem();
 
     public void clearRentals(String customerName) {
 
         // Duplication
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
         } else {
-            System.out.println("Name: " + foundCustomer.getName() +
-                    "\tRentals: " + foundCustomer.getRentals().size()) ;
-            for ( Rental rental: foundCustomer.getRentals() ) {
-                System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-                System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
-            }
+	    foundCustomer.customerSummary();
 
             foundCustomer.clearRental();
         }
     }
 
+    private Customer getCustomer(String customerName) {
+        Customer foundCustomer = null;
+        for (Customer customer : customers) {
+            if (customer.getName().equals(customerName)) {
+                foundCustomer = customer;
+                break;
+            }
+        }
+        return foundCustomer;
+    }
+
     public void returnVideo(String customerName, String videoTitle) {
 
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
         if ( foundCustomer == null ) return ;
 
 
@@ -62,10 +57,8 @@ public class VRUIManager {
         customers.add(james) ;
         customers.add(brown) ;
 
-        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date()) ;
-        videos.add(v1) ;
-        videos.add(v2) ;
+        Video v1 = registerVideo("v1", VideoType.VHS.ordinal(), PriceCode.REGULAR.ordinal()) ;
+        Video v2 = registerVideo("v2", VideoType.DVD.ordinal(), PriceCode.NEW_RELEASE.ordinal() ) ;
 
         Rental r1 = new Rental(v1) ;
         Rental r2 = new Rental(v2) ;
@@ -84,25 +77,14 @@ public class VRUIManager {
 
     public void listCustomers() {
         for ( Customer customer: customers ) {
-            System.out.println("Name: " + customer.getName() +
-                    "\tRentals: " + customer.getRentals().size()) ;
-            for ( Rental rental: customer.getRentals() ) {
-                System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-                System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
-            }
+		customer.customerSummary();
         }
         System.out.println("End of list");
     }
 
     public void getCustomerReport(String customerName) {
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
@@ -116,13 +98,7 @@ public class VRUIManager {
     public void rentVideo(String customerName, String videoTitle ) {
 
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) return ;
 
@@ -149,9 +125,9 @@ public class VRUIManager {
         customers.add(customer) ;
     }
 
-    public void registerVideo(String title, VideoType videoType, PriceCode priceCode) {
-        Date registeredDate = new Date();
-        Video video = new Video(title, videoType, priceCode, registeredDate) ;
+    public Video registerVideo(String title, int videoType, int priceCode) {
+        Video video = videoSystem.createVideo(title, videoType, priceCode);
         videos.add(video) ;
+        return video;
     }
 }
