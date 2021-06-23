@@ -10,9 +10,9 @@ class ReportGeneratorTest {
     void getReport() {
         Customer customer = new Customer("AA");
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-        Video v3 = new Video("v3", Video.VHS, Video.NEW_RELEASE, new Date()) ;
+        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date()) ;
+        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date()) ;
+        Video v3 = new Video("v3", VideoType.VHS, PriceCode.NEW_RELEASE, new Date()) ;
         Rental r1 = new Rental(v1) ;
         Rental r2 = new Rental(v2) ;
         Rental r3 = new Rental(v3) ;

@@ -18,7 +18,7 @@ public class ReportGenerator {
         String result = "Customer Report for " + this.customer.getName() + "\n";
 
         for (Rental each : rentals) {
-            int daysRented = each.getDayRented();
+            int daysRented = each.getDaysRented();
             double eachCharge = each.getCharge();
             int eachPoint = each.getPoint();
 

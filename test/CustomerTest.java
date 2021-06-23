@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CustomerTest {
 
@@ -34,14 +34,14 @@ class CustomerTest {
     @Test
     void setgetRentals() {
         Customer customer = new Customer("AA");
-        List<Rental> testRentals = new ArrayList<Rental>() ;
+        List<Rental> testRentals = new ArrayList<Rental>();
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-        Rental r1 = new Rental(v1) ;
-        Rental r2 = new Rental(v2) ;
-        testRentals.add (r1);
-        testRentals.add (r2);
+        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date());
+        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date());
+        Rental r1 = new Rental(v1);
+        Rental r2 = new Rental(v2);
+        testRentals.add(r1);
+        testRentals.add(r2);
         customer.setRentals(testRentals);
 
         assertEquals(testRentals, customer.getRentals());
@@ -51,10 +51,10 @@ class CustomerTest {
     void addgetRental() {
         Customer customer = new Customer("AA");
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-        Rental r1 = new Rental(v1) ;
-        Rental r2 = new Rental(v2) ;
+        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date());
+        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date());
+        Rental r1 = new Rental(v1);
+        Rental r2 = new Rental(v2);
         customer.addRental(r1);
         customer.addRental(r2);
 

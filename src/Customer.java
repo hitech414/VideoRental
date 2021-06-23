@@ -28,6 +28,9 @@ public class Customer {
 
     public void addRental(Rental rental) {
         rentals.add(rental);
-
     }
+	public void clearRental() {
+		List<Rental> rentals = new ArrayList<Rental>() ;
+		setRentals(rentals);
+	}
 }
