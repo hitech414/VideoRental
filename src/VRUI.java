@@ -7,10 +7,6 @@ import java.util.Scanner;
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
 
-	private List<Customer> customers = new ArrayList<Customer>() ;
-
-	private List<Video> videos = new ArrayList<Video>() ;
-
 	private static VRUIManager uiManager = new VRUIManager();
 
 	public static void main(String[] args) {
