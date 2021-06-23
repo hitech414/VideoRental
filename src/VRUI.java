@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 //SRP violation - Domain Logic + Presentation
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
-
 	private static VRUIManager uiManager = new VRUIManager();
+	private List<Customer> customers;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI() ;
@@ -93,7 +90,6 @@ public class VRUI {
 				break ;
 			}
 		}
-
 	}
 
 	public void rentVideo() {
@@ -127,10 +123,10 @@ public class VRUI {
 		String title = scanner.next() ;
 
 		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
-		int videoType = scanner.nextInt();
+		VideoType videoType = VideoType.fromInt(scanner.nextInt());
 
 		System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
-		int priceCode = scanner.nextInt();
+		PriceCode priceCode = PriceCode.fromInt(scanner.nextInt());
 
 		this.uiManager.registerVideo(title, videoType, priceCode);
 	}

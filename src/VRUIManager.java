@@ -62,8 +62,8 @@ public class VRUIManager {
         customers.add(james) ;
         customers.add(brown) ;
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
+        Video v1 = new Video("v1", VideoType.CD, PriceCode.REGULAR, new Date()) ;
+        Video v2 = new Video("v2", VideoType.DVD, PriceCode.NEW_RELEASE, new Date()) ;
         videos.add(v1) ;
         videos.add(v2) ;
 
@@ -107,7 +107,8 @@ public class VRUIManager {
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
         } else {
-            String result = foundCustomer.getReport() ;
+            ReportGenerator genReport = new ReportGenerator(foundCustomer);
+            String result = genReport.getReport() ;
             System.out.println(result);
         }
     }
@@ -148,7 +149,7 @@ public class VRUIManager {
         customers.add(customer) ;
     }
 
-    public void registerVideo(String title, int videoType, int priceCode) {
+    public void registerVideo(String title, VideoType videoType, PriceCode priceCode) {
         Date registeredDate = new Date();
         Video video = new Video(title, videoType, priceCode, registeredDate) ;
         videos.add(video) ;
