@@ -32,19 +32,26 @@ public class Customer {
 
 	}
 
+  // SRP violation - Long Method (Report Generate & Calculate)
+	// Divergent Change
+	// Feature Envy
+	//
 	public String getReport() {
 		String result = "Customer Report for " + getName() + "\n";
 
 		List<Rental> rentals = getRentals();
 
+		// SRP
 		double totalCharge = 0;
 		int totalPoint = 0;
 
+		// Move to ...
 		for (Rental each : rentals) {
 			double eachCharge = 0;
 			int eachPoint = 0 ;
 			int daysRented = 0;
 
+			// Duplication
 			if (each.getStatus() == 1) { // returned Video
 				long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
 				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
@@ -52,7 +59,7 @@ public class Customer {
 				long diff = new Date().getTime() - each.getRentDate().getTime();
 				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 			}
-
+			// Switch - ?
 			switch (each.getVideo().getPriceCode()) {
 			case Video.REGULAR:
 				eachCharge += 2;

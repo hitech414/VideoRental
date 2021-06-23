@@ -49,6 +49,7 @@ public class Rental {
 	public int getDaysRentedLimit() {
 		int limit = 0 ;
 		int daysRented ;
+		//Duplication
 		if (getStatus() == 1) { // returned Video
 			long diff = returnDate.getTime() - rentDate.getTime();
 			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
@@ -58,6 +59,8 @@ public class Rental {
 		}
 		if ( daysRented <= 2) return limit ;
 
+		// Switch -
+		// Feature Envy
 		switch ( video.getVideoType() ) {
 			case Video.VHS: limit = 5 ; break ;
 			case Video.CD: limit = 3 ; break ;

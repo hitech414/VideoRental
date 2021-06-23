@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+//SRP violation - Domain Logic + Presentation
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
 
@@ -37,6 +38,7 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
+		// Duplication
 		Customer foundCustomer = null ;
 		for ( Customer customer: customers ) {
 			if ( customer.getName().equals(customerName)) {
@@ -48,6 +50,7 @@ public class VRUI {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
+			// SRP : Query + Modifier
 			System.out.println("Name: " + foundCustomer.getName() +
 					"\tRentals: " + foundCustomer.getRentals().size()) ;
 			for ( Rental rental: foundCustomer.getRentals() ) {
@@ -176,11 +179,13 @@ public class VRUI {
 		Rental rental = new Rental(foundVideo) ;
 		foundVideo.setRented(true);
 
+		// Encapsulate Collection
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		customerRentals.add(rental);
 		foundCustomer.setRentals(customerRentals);
 	}
 
+  // SRP violation
 	public void register(String object) {
 		if ( object.equals("customer") ) {
 			System.out.println("Enter customer name: ") ;
