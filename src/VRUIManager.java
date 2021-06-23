@@ -7,6 +7,7 @@ public class VRUIManager {
 
     private List<Customer> customers = new ArrayList<Customer>() ;
     private List<Video> videos = new ArrayList<Video>() ;
+    private VideoSystem videoSystem = new VideoSystem();
 
     public void clearRentals(String customerName) {
 
@@ -149,8 +150,7 @@ public class VRUIManager {
     }
 
     public void registerVideo(String title, int videoType, int priceCode) {
-        Date registeredDate = new Date();
-        Video video = new Video(title, videoType, priceCode, registeredDate) ;
+        Video video = videoSystem.createVideo(title, videoType, priceCode);
         videos.add(video) ;
     }
 }
