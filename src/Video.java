@@ -3,20 +3,12 @@ import java.util.Date;
 public class Video {
 	private String title ;
 
-  // Type Code - Enum ...
-	private int priceCode ;
-	public static final int REGULAR = 1 ;
-	public static final int NEW_RELEASE =2 ;
-
-	private int videoType ;
-	public static final int VHS = 1 ;
-	public static final int CD = 2 ;
-	public static final int DVD = 3 ;
-
+	private PriceCode priceCode;
+	private VideoType videoType;
 	private Date registeredDate ;
 	private boolean rented ;
 	
-	public Video(String title, int videoType, int priceCode, Date registeredDate) {
+	public Video(String title, VideoType videoType, PriceCode priceCode, Date registeredDate) {
 		this.setTitle(title) ;
 		this.setVideoType(videoType) ;
 		this.setPriceCode(priceCode) ;
@@ -32,13 +24,15 @@ public class Video {
 		}
 		return pentalty ;
 	}
-	public int getPriceCode() {
+	public PriceCode getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
+	public void setPriceCode(PriceCode priceCode) {
 		this.priceCode = priceCode;
 	}
+
+	public int getPriceCodeNumber() { return this.priceCode.getPriceCodeNumber(); }
 
 	public String getTitle() {
 		return title;
@@ -64,11 +58,13 @@ public class Video {
 		this.registeredDate = registeredDate;
 	}
 
-	public int getVideoType() {
+	public VideoType getVideoType() {
 		return videoType;
 	}
 
-	public void setVideoType(int videoType) {
+	public void setVideoType(VideoType videoType) {
 		this.videoType = videoType;
 	}
+
+	public int getVideoTypeNumber() { return this.videoType.getVideoTypeNumber(); }
 }
