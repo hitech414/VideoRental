@@ -12,13 +12,7 @@ public class VRUIManager {
     public void clearRentals(String customerName) {
 
         // Duplication
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
@@ -34,16 +28,21 @@ public class VRUIManager {
         }
     }
 
+    private Customer getCustomer(String customerName) {
+        Customer foundCustomer = null;
+        for (Customer customer : customers) {
+            if (customer.getName().equals(customerName)) {
+                foundCustomer = customer;
+                break;
+            }
+        }
+        return foundCustomer;
+    }
+
     public void returnVideo(String customerName, String videoTitle) {
 
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
         if ( foundCustomer == null ) return ;
 
 
@@ -95,13 +94,7 @@ public class VRUIManager {
 
     public void getCustomerReport(String customerName) {
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
@@ -114,13 +107,7 @@ public class VRUIManager {
     public void rentVideo(String customerName, String videoTitle ) {
 
 
-        Customer foundCustomer = null ;
-        for ( Customer customer: customers ) {
-            if ( customer.getName().equals(customerName)) {
-                foundCustomer = customer ;
-                break ;
-            }
-        }
+        Customer foundCustomer = getCustomer(customerName);
 
         if ( foundCustomer == null ) return ;
 
