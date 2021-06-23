@@ -29,7 +29,6 @@ public class Customer {
 
 	public void addRental(Rental rental) {
 		rentals.add(rental);
-
 	}
 
   // SRP violation - Long Method (Report Generate & Calculate)

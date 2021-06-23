@@ -63,10 +63,8 @@ public class VRUIManager {
         customers.add(james) ;
         customers.add(brown) ;
 
-        Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-        Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-        videos.add(v1) ;
-        videos.add(v2) ;
+        Video v1 = registerVideo("v1", VideoType.VHS.ordinal(), PriceCode.REGULAR.ordinal()) ;
+        Video v2 = registerVideo("v2", VideoType.DVD.ordinal(), PriceCode.NEW_RELEASE.ordinal() ) ;
 
         Rental r1 = new Rental(v1) ;
         Rental r2 = new Rental(v2) ;
@@ -149,8 +147,9 @@ public class VRUIManager {
         customers.add(customer) ;
     }
 
-    public void registerVideo(String title, int videoType, int priceCode) {
+    public Video registerVideo(String title, int videoType, int priceCode) {
         Video video = videoSystem.createVideo(title, videoType, priceCode);
         videos.add(video) ;
+        return video;
     }
 }
