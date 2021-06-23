@@ -6,7 +6,6 @@ import java.util.Scanner;
 //SRP violation - Domain Logic + Presentation
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
-
 	private static VRUIManager uiManager = new VRUIManager();
 
 	public static void main(String[] args) {
@@ -36,29 +35,14 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		// Duplication
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
+		this.uiManager.clearRentals(customerName);
+
 
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
-
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
-		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
 		String videoTitle = scanner.next() ;
@@ -85,14 +69,8 @@ public class VRUI {
 	public void getCustomerReport() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
+		this.uiManager.getCustomerReport(customerName);
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
 
 	}
 
@@ -100,18 +78,9 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = null ;
-		for ( Customer customer: customers ) {
-			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
-			}
-		}
-
-		if ( foundCustomer == null ) return ;
-
 		System.out.println("Enter video title to rent: ") ;
 		String videoTitle = scanner.next() ;
+
 		this.uiManager.rentVideo(customerName, videoTitle);
 	}
 
