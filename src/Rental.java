@@ -5,6 +5,7 @@ public class Rental {
 	private int status ; // 0 for Rented, 1 for Returned
 	private Date rentDate ;
 	private Date returnDate ;
+	private final int SEC_ONE_DAY = 60 * 60 * 24;
 
 	public Rental(Video video) {
 		this.video = video ;
@@ -25,7 +26,7 @@ public class Rental {
 	}
 
 	public void returnVideo() {
-		if ( status == 1 ) {
+		if ( status == 0 ) {
 			this.status = 1;
 			returnDate = new Date() ;
 		}
@@ -67,5 +68,48 @@ public class Rental {
 			case Video.DVD: limit = 2 ; break ;
 		}
 		return limit ;
+	}
+
+	public int getDayRented() {
+
+		// Duplication
+        long diff = 0;
+		if (getStatus() == 1) { // returned Video
+			diff = getReturnDate().getTime() - getRentDate().getTime();
+		} else { // not yet returned
+			diff = new Date().getTime() - getRentDate().getTime();
+		}
+		return (int) (diff / (1000 * SEC_ONE_DAY)) + 1;
+	}
+	public int getPoint() {
+	    int eachPoint = 1;
+
+		if ((this.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+			eachPoint++;
+
+		if ( getDayRented() > getDaysRentedLimit() )
+			eachPoint -= Math.min(eachPoint, getVideo().getLateReturnPointPenalty()) ;
+
+		return eachPoint;
+	}
+
+	public double getCharge() {
+		int daysRented = this.getDayRented();
+
+		// Switch -> Factory
+		ChargeVideoCalculator calculateCharge;
+		switch (this.getVideo().getPriceCode()) {
+			case Video.REGULAR:
+				calculateCharge = new ChargeRegularCalculator();
+				break;
+			case Video.NEW_RELEASE:
+				calculateCharge = new ChargeNewReleaseCalculator();
+				break;
+			default:
+				calculateCharge = new ChargeDefaultCalculator();
+				break;
+		}
+
+		return calculateCharge.getCharge(daysRented);
 	}
 }
