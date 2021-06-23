@@ -39,7 +39,13 @@ public class VRUI {
 		String customerName = scanner.next() ;
 
 		// Duplication
-		Customer foundCustomer = getCustomer(customerName);
+		Customer foundCustomer = null ;
+		for ( Customer customer: customers ) {
+			if ( customer.getName().equals(customerName)) {
+				foundCustomer = customer ;
+				break ;
+			}
+		}
 
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
@@ -57,22 +63,17 @@ public class VRUI {
 		}
 	}
 
-	private Customer getCustomer(String customerName) {
-		Customer foundCustomer = null;
-		for (Customer customer : customers) {
-			if (customer.getName().equals(customerName)) {
-				foundCustomer = customer;
-				break;
-			}
-		}
-		return foundCustomer;
-	}
-
 	public void returnVideo() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = getCustomer(customerName);
+		Customer foundCustomer = null ;
+		for ( Customer customer: customers ) {
+			if ( customer.getName().equals(customerName)) {
+				foundCustomer = customer ;
+				break ;
+			}
+		}
 		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
@@ -132,7 +133,13 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = getCustomer(customerName);
+		Customer foundCustomer = null ;
+		for ( Customer customer: customers ) {
+			if ( customer.getName().equals(customerName)) {
+				foundCustomer = customer ;
+				break ;
+			}
+		}
 
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
@@ -146,7 +153,13 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 
-		Customer foundCustomer = getCustomer(customerName);
+		Customer foundCustomer = null ;
+		for ( Customer customer: customers ) {
+			if ( customer.getName().equals(customerName)) {
+				foundCustomer = customer ;
+				break ;
+			}
+		}
 
 		if ( foundCustomer == null ) return ;
 
