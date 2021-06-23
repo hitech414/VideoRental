@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 //SRP violation - Domain Logic + Presentation
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
 	private static VRUIManager uiManager = new VRUIManager();
+	private List<Customer> customers;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI() ;
@@ -70,7 +68,6 @@ public class VRUI {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
 		this.uiManager.getCustomerReport(customerName);
-
 
 	}
 

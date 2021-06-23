@@ -10,4 +10,13 @@ public enum PriceCode {
     public int getPriceCodeNumber(){
         return this.priceNumber;
     }
+
+    public static PriceCode fromInt(int id) {
+        for (PriceCode code : values()) {
+            if (code.getPriceCodeNumber() == id) {
+                return code;
+            }
+        }
+        return null;
+    }
 }

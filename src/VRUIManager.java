@@ -89,7 +89,8 @@ public class VRUIManager {
         if ( foundCustomer == null ) {
             System.out.println("No customer found") ;
         } else {
-            String result = foundCustomer.getReport() ;
+            ReportGenerator genReport = new ReportGenerator(foundCustomer);
+            String result = genReport.getReport() ;
             System.out.println(result);
         }
     }

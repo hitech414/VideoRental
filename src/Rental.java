@@ -60,4 +60,36 @@ public class Rental {
 		}
 		return (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 	}
+
+    public int getPoint() {
+        int eachPoint = 1;
+
+        if ((this.getVideo().getPriceCode() == PriceCode.NEW_RELEASE))
+            eachPoint++;
+
+        if (getDaysRented() > getDaysRentedLimit())
+            eachPoint -= Math.min(eachPoint, getVideo().getLateReturnPointPenalty());
+
+        return eachPoint;
+    }
+
+    public double getCharge() {
+        int daysRented = this.getDaysRented();
+
+        // Switch -> Factory
+        ChargeVideoCalculator calculateCharge;
+        switch (this.getVideo().getPriceCode()) {
+            case REGULAR:
+                calculateCharge = new ChargeRegularCalculator();
+                break;
+            case NEW_RELEASE:
+                calculateCharge = new ChargeNewReleaseCalculator();
+                break;
+            default:
+                calculateCharge = new ChargeDefaultCalculator();
+                break;
+        }
+
+        return calculateCharge.getCharge(daysRented);
+    }
 }
